@@ -41,6 +41,10 @@
             </el-collapse-item>
             </el-collapse>
         </el-collapse>
+        <div class="save_button">
+            <el-button>保存设置</el-button>
+        </div>
+        
     </el-scrollbar>
 </template>
 
@@ -85,5 +89,11 @@ export default {
 
     .side_title {
         margin-bottom: 10px;
+    }
+
+    .save_button {
+        width:100px;
+        margin: 0 auto;
+        margin-top: 20px;
     }
 </style>
