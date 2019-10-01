@@ -21,7 +21,9 @@
                   <i class="el-icon-user-solid"></i>
                   <span>个人设置</span>
                 </template>
-                <el-menu-item index="settings-info">个人信息</el-menu-item>
+                <el-menu-item index="settings-info">
+                  <router-link to="/settings/self">个人信息</router-link>
+                </el-menu-item>
                 <el-menu-item index="settings-safe">安全设置</el-menu-item>
                 <el-menu-item index="settings-common">通用设置</el-menu-item>
                 <el-menu-item index="settings-msg">

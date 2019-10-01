@@ -42,7 +42,7 @@
             </el-collapse>
         </el-collapse>
         <div class="save_button">
-            <el-button>保存设置</el-button>
+            <el-button type="primary" :plain="true" @click="save">保存设置</el-button>
         </div>
         
     </el-scrollbar>
@@ -66,7 +66,17 @@ export default {
             new_in_followed_answer:true,
             certificate_expired:false,
         }
-    }
+    },
+    methods: {
+        save:function(){
+            this.$message({
+                message:'保存成功',
+                type:'success',
+                offset:150,
+                center:true,
+            })
+        }
+    },
 }
 </script>
 
@@ -96,4 +106,5 @@ export default {
         margin: 0 auto;
         margin-top: 20px;
     }
+
 </style>
