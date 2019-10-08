@@ -6,7 +6,6 @@
       :rules="rules"
       label-width="80px"
       label-position="right"
-      @submit.native.prevent
     >
       <el-form-item label="头像">
         <el-upload

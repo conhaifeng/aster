@@ -24,7 +24,9 @@
                 <el-menu-item index="settings-info">
                   <router-link to="/settings/self">个人信息</router-link>
                 </el-menu-item>
-                <el-menu-item index="settings-safe">安全设置</el-menu-item>
+                <el-menu-item index="settings-safe">
+                  <router-link to="/settings/safe">安全设置</router-link>
+                </el-menu-item>
                 <el-menu-item index="settings-common">通用设置</el-menu-item>
                 <el-menu-item index="settings-msg">
                   <router-link to="/settings/msg">消息设置</router-link>

@@ -4,10 +4,14 @@ const about_log = () => import("../page/about/updatelog.vue")
 const about_feedback = () => import("../page/about/feedback.vue")
 const settings_self = () => import("../page/settings/self.vue")
 const settings_msg = () => import("../page/settings/message.vue")
+const settings_safe = () => import("../page/settings/safe.vue")
 
 export default [{
         path: '/settings/self',
         component: settings_self
+    }, {
+        path: '/settings/safe',
+        component: settings_safe
     }, {
         path: '/settings/msg',
         component: settings_msg
