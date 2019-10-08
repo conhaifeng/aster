@@ -287,7 +287,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 .avatar-style {
   line-height: 50px;

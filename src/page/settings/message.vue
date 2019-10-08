@@ -80,7 +80,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
     .outter_scroll {
         height: 500px;

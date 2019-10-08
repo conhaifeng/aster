@@ -1,5 +1,5 @@
 <template>
-   <el-card class="card-position card-text-position">
+   <el-card>
        <p>开发中，敬请期待...</p>
    </el-card>
 
@@ -11,13 +11,12 @@ export default {
 }
 </script>
 
-<style>
-    .card-position {
+<style scoped>
+
+    .el-card {
         width: 400px;
         margin: 0 auto;
-    }
-
-    .card-text-position {
         text-align: center;
     }
+
 </style>

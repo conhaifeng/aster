@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .el-carousel {
         margin: 0 auto;
         width: 800px;

@@ -49,7 +49,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .el-timeline {
         margin: 0 auto;
         width:400px;
