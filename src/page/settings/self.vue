@@ -1,114 +1,72 @@
 <template>
-  <div>
-    <el-row :gutter="10">
-      <el-col :span="8" class="label-style">
+  <el-form
+    :model="userInfo"
+    ref="userInfo"
+    :rules="rules"
+    label-width="80px"
+    label-position="right"
+    @submit.native.prevent
+  >
+    <el-form-item label="头像">
+      <el-upload
+        action="http://10.100.108.23:8080/avatar"
+        :multiple="false"
+        :show-file-list="false"
+        :before-upload="fileValidator"
+        class="avatarUploader"
+      >
         <el-avatar :size="50" :src="defaultAvatar"></el-avatar>
-      </el-col>
-      <el-col :span="8">
-        <el-upload
-          action="http://10.100.108.23:8080/avatar"
-          :multiple="false"
-          :before-upload="fileValidator"
-          class="avatar-style"
-          :show-file-list="false"
-        >
-          <el-button type="primary" size="small">更改头像</el-button>
-        </el-upload>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="8" class="label-style">
-        <span>用户名</span>
-      </el-col>
-      <el-col :span="8">
-        <el-input v-model="username" placeholder="请输入用户名"></el-input>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="8" class="label-style">
-        <span>邮箱</span>
-      </el-col>
-      <el-col :span="8">
-        <el-input v-model="email" placeholder="请输入邮箱"></el-input>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="8" class="label-style">
-        <span>性别</span>
-      </el-col>
-      <el-col :span="8">
-        <el-radio v-model="gender" label="male">男</el-radio>
-        <el-radio v-model="gender" label="female">女</el-radio>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="8" class="label-style">
-        <span>现居地址</span>
-      </el-col>
-      <el-col :span="8">
-        <el-cascader v-model="address" :options="addressOptions"></el-cascader>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="8" class="label-style">
-        <span>个人网站</span>
-      </el-col>
-      <el-col :span="8">
-        <el-input v-model="website" placeholder="请输入个人网站"></el-input>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="8" class="label-style">
-        <span>生日</span>
-      </el-col>
-      <el-col :span="8">
-        <el-date-picker v-model="birthday" placeholder="请输入生日"></el-date-picker>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="8" class="label-style">
-        <span>公司</span>
-      </el-col>
-      <el-col :span="8">
-        <el-input v-model="company"></el-input>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :span="8" class="label-style">
-        <span>自我介绍</span>
-      </el-col>
-      <el-col :span="8">
-        <el-input type="textarea" v-model="description"></el-input>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="8">
-        <div class="grid-content"></div>
-      </el-col>
-      <el-col :span="8">
-        <div class="save-align">
-          <el-button type="primary" plain @click="save">保存</el-button>
-        </div>
-      </el-col>
-    </el-row>
-  </div>
+        <div slot="tip" class="el-upload__tip">只能上传ipg/png文件，大小不能超过2M</div>
+      </el-upload>
+    </el-form-item>
+    <el-form-item label="用户名" prop="username">
+      <el-input v-model="userInfo.username" placeholder="请输入用户名"></el-input>
+    </el-form-item>
+    <el-form-item label="邮箱" prop="email">
+      <el-input v-model="userInfo.email" placeholder="请输入邮箱"></el-input>
+    </el-form-item>
+    <el-form-item label="性别">
+      <el-radio label="male" v-model="userInfo.gender">男</el-radio>
+      <el-radio label="female" v-model="userInfo.gender">女</el-radio>
+    </el-form-item>
+    <el-form-item label="居住地址">
+      <el-cascader :options="addresses" v-model="userInfo.address"></el-cascader>
+    </el-form-item>
+    <el-form-item label="个人网站">
+      <el-input v-model="userInfo.website"></el-input>
+    </el-form-item>
+    <el-form-item label="生日">
+      <el-date-picker v-model="userInfo.birthday"></el-date-picker>
+    </el-form-item>
+    <el-form-item label="公司">
+      <el-input v-model="userInfo.company"></el-input>
+    </el-form-item>
+    <el-form-item label="自我介绍">
+      <el-input type="textarea" v-model="userInfo.description"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" plain @click="submit('userInfo')">保存</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
 export default {
-  data() {
+  data: function() {
     return {
       defaultAvatar:
         "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
-      username: "running man",
-      email: "conhaieng@163.com",
-      gender: "male",
-      website: "www.haifeng.com",
-      birthday: "1990-01-23",
-      address: "nanjing",
-      company: "火箭军",
-      description: "",
-      addressOptions: [
+      userInfo: {
+        username: "running man",
+        email: "conhaifeng@163.com",
+        gender: "male",
+        address: "nanjing",
+        website: "www.haifeng.com",
+        birthday: "1990-01-23",
+        company: "甲骨文",
+        description: ""
+      },
+      addresses: [
         {
           value: "hebei",
           label: "河北",
@@ -223,12 +181,30 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      rules: {
+        username: [
+          {
+            required: true,
+            message: "请输入用户名",
+            trigger: ["blur", "change"]
+          },
+          { min: 5, max: 20, message: "用户名需介于5-20个字", trigger: "blur" }
+        ],
+        email: [
+          {
+            required: true,
+            message: "请输入邮箱",
+            trigger: ["blur", "change"]
+          },
+          { type: "email", message: "请输入正确的邮箱格式", trigger: "blur" }
+        ]
+      }
     };
   },
   methods: {
     fileValidator: function(file) {
-      let acceptType = file.type === "image/jpeg";
+      let acceptType = file.type === "image/jpeg" || file.type === "image/png";
       let size = file.size / 1024 / 1024;
       let acceptSize = size < 2;
 
@@ -236,7 +212,8 @@ export default {
         this.$message({
           type: "error",
           message: "只支持png/jpg格式",
-          center: true
+          center: true,
+          duration: 2000
         });
 
         return acceptType;
@@ -246,41 +223,27 @@ export default {
         this.$message({
           type: "error",
           message: "不能超过2M",
-          center: true
+          center: true,
+          duration: 2000
         });
 
         return acceptSize;
       }
     },
-    save: function() {
-      let is_username_empty = this.username === null || this.username === "";
-      let is_email_empty = this.email === null || this.email === "";
-      if (is_username_empty) {
+    submit: function(formName) {
+      this.$refs[formName].validate((validate) => {
+       
+        if (!validate) {
+          return false;
+        }
+
         this.$message({
-          message: "用户名不能为空",
-          type: "error",
-          offet: 150,
+          message: "提交成功",
+          type: "success",
+          center: true,
+          offset: 150,
           duration: 2000
         });
-
-        return false;
-      }
-
-      if (is_email_empty) {
-        this.$message({
-          message: "邮箱不能为空",
-          type: "error",
-          offet: 150,
-          duration: 2000
-        });
-
-        return false;
-      }
-
-      this.$message({
-        message: "保存成功",
-        type: "success",
-        offset: 150
       });
     }
   }
@@ -288,38 +251,24 @@ export default {
 </script>
 
 <style scoped>
-
-.avatar-style {
-  line-height: 50px;
+.avatarUploader {
+  line-height: normal;
 }
 
-.el-row {
-  margin-bottom: 20px;
-}
-
-.el-avatar {
-  vertical-align: middle;
+.el-form {
+  width: 400px;
+  margin: 0 auto;
 }
 
 .el-input {
   width: 250px;
 }
 
-.label-style {
-  text-align: center;
-  line-height: 40px;
-  font-size: 14px;  
-}
-
 .el-textarea {
   width: 250px;
 }
 
-.grid-content {
-  min-height: 36px;
-}
-
-.save-align {
-  padding-left: 5px;
+.el-cascader {
+  width: 250px;
 }
 </style>
