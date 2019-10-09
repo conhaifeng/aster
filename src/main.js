@@ -4,6 +4,8 @@ import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import App from './App';
 import routes from './router/router';
+import './style/common.styl' 
+
 
 Vue.config.productionTip = false;
 

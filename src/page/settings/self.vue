@@ -1,59 +1,61 @@
 <template>
-  <el-scrollbar style="height:500px">
-    <el-form
-      :model="userInfo"
-      ref="userInfo"
-      :rules="rules"
-      label-width="80px"
-      label-position="right"
-    >
-      <el-form-item label="头像">
-        <el-upload
-          action="http://10.100.108.23:8080/avatar"
-          :multiple="false"
-          :show-file-list="false"
-          :before-upload="fileValidator"
-          class="avatarUploader"
-        >
-          <el-avatar :size="50" :src="defaultAvatar"></el-avatar>
-          <div slot="tip" class="el-upload__tip">只能上传ipg/png文件，大小不能超过2M</div>
-        </el-upload>
-      </el-form-item>
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="userInfo.username" placeholder="请输入用户名"></el-input>
-      </el-form-item>
-      <el-form-item label="邮箱" prop="email">
-        <el-input v-model="userInfo.email" placeholder="请输入邮箱"></el-input>
-      </el-form-item>
-      <el-form-item label="性别">
-        <el-radio label="male" v-model="userInfo.gender">男</el-radio>
-        <el-radio label="female" v-model="userInfo.gender">女</el-radio>
-      </el-form-item>
-      <el-form-item label="居住地址">
-        <el-cascader :options="addresses" v-model="userInfo.address"></el-cascader>
-      </el-form-item>
-      <el-form-item label="个人网站">
-        <el-input v-model="userInfo.website"></el-input>
-      </el-form-item>
-      <el-form-item label="生日">
-        <el-date-picker v-model="userInfo.birthday"></el-date-picker>
-      </el-form-item>
-      <el-form-item label="公司">
-        <el-input v-model="userInfo.company"></el-input>
-      </el-form-item>
-      <el-form-item label="兴趣">
-        <el-checkbox-group v-model="userInfo.interests" :max="3">
-          <el-checkbox v-for="(interest, index) in interests" :key="index" :label="interest.value">{{interest.name}}</el-checkbox>
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="自我介绍">
-        <el-input type="textarea" v-model="userInfo.description"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" plain @click="submit('userInfo')">保存</el-button>
-      </el-form-item>
-    </el-form>
-  </el-scrollbar>
+  <el-form
+    :model="userInfo"
+    ref="userInfo"
+    :rules="rules"
+    label-width="80px"
+    label-position="right"
+  >
+    <el-form-item label="头像">
+      <el-upload
+        action="http://10.100.108.23:8080/avatar"
+        :multiple="false"
+        :show-file-list="false"
+        :before-upload="fileValidator"
+        class="avatarUploader"
+      >
+        <el-avatar :size="50" :src="defaultAvatar"></el-avatar>
+        <div slot="tip" class="el-upload__tip">只能上传ipg/png文件，大小不能超过2M</div>
+      </el-upload>
+    </el-form-item>
+    <el-form-item label="用户名" prop="username">
+      <el-input v-model="userInfo.username" placeholder="请输入用户名"></el-input>
+    </el-form-item>
+    <el-form-item label="邮箱" prop="email">
+      <el-input v-model="userInfo.email" placeholder="请输入邮箱"></el-input>
+    </el-form-item>
+    <el-form-item label="性别">
+      <el-radio label="male" v-model="userInfo.gender">男</el-radio>
+      <el-radio label="female" v-model="userInfo.gender">女</el-radio>
+    </el-form-item>
+    <el-form-item label="居住地址">
+      <el-cascader :options="addresses" v-model="userInfo.address"></el-cascader>
+    </el-form-item>
+    <el-form-item label="个人网站">
+      <el-input v-model="userInfo.website"></el-input>
+    </el-form-item>
+    <el-form-item label="生日">
+      <el-date-picker v-model="userInfo.birthday"></el-date-picker>
+    </el-form-item>
+    <el-form-item label="公司">
+      <el-input v-model="userInfo.company"></el-input>
+    </el-form-item>
+    <el-form-item label="兴趣">
+      <el-checkbox-group v-model="userInfo.interests" :max="3">
+        <el-checkbox
+          v-for="(interest, index) in interests"
+          :key="index"
+          :label="interest.value"
+        >{{interest.name}}</el-checkbox>
+      </el-checkbox-group>
+    </el-form-item>
+    <el-form-item label="自我介绍">
+      <el-input type="textarea" v-model="userInfo.description"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" plain @click="submit('userInfo')">保存</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
@@ -71,7 +73,7 @@ export default {
         birthday: "1990-01-23",
         company: "甲骨文",
         description: "",
-        interests:["computer", "read"]
+        interests: ["computer", "read"]
       },
       addresses: [
         {
@@ -189,13 +191,13 @@ export default {
           ]
         }
       ],
-      interests:[
-        {name:'计算机', value:'computer'},
-        {name:'篮球', value:'basketball'},
-        {name:'音乐', value:'music'},
-        {name:'电影', value:'movie'},
-        {name:'读书', value:'read'},
-        {name:'厨艺', value:'cook'}
+      interests: [
+        { name: "计算机", value: "computer" },
+        { name: "篮球", value: "basketball" },
+        { name: "音乐", value: "music" },
+        { name: "电影", value: "movie" },
+        { name: "读书", value: "read" },
+        { name: "厨艺", value: "cook" }
       ],
       rules: {
         username: [
