@@ -83,22 +83,22 @@ export default {};
 
 <style>
 .container {
-  height: 600px;
+  height: 90vh;
 }
 
 .page-container-scroll {
-  height: 600px;
+  height: 90vh;
 }
 
 .header-container {
-  width: 1140px;
+  width: 85vw;
   margin: 0 auto;
   line-height: 60px;
   border-bottom: 1px solid #dcdfe6;
 }
 
 .page-container {
-  width: 1140px;
+  width: 85vw;
   margin: 0 auto;
 }
 
@@ -117,6 +117,7 @@ export default {};
 
 .page-component {
   padding-top: 60px;
-  padding-left: 240px;
+  padding-left: 18vw;
+  /* padding-left: 240px; */
 }
 </style>
