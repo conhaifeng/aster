@@ -1,9 +1,23 @@
 <template>
   <el-container class="container">
-    <el-header class="header-container">
-      <el-row>
-        <el-col :span="12">daf</el-col>
-      </el-row>
+    <el-header>
+      <div class="header-container">
+        <a id="logo" href="//10.100.108.23:8080">
+          <img :src="headerLogo" class="header-logo">
+          <span>Aster</span>
+        </a>
+
+        <ul class="nav">
+          <li class="nav-item">
+            <router-link to="/message/new">
+              <i class="el-icon-message-solid"></i>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/login">登录</router-link>
+          </li>
+        </ul>
+      </div>
     </el-header>
     <el-scrollbar class="page-container-scroll">
       <div class="page-container">
@@ -78,7 +92,14 @@
 
 
 <script>
-export default {};
+export default {
+  data: function() {
+    return {
+      headerLogo: require("./assets/logo.jpg"),
+      fit: "fill"
+    };
+  }
+};
 </script>
 
 <style>
@@ -91,6 +112,7 @@ export default {};
 }
 
 .header-container {
+  height: 60px;
   width: 85vw;
   margin: 0 auto;
   line-height: 60px;
@@ -119,5 +141,50 @@ export default {};
   padding-top: 60px;
   padding-left: 18vw;
   /* padding-left: 240px; */
+}
+
+.nav {
+  margin: 0;
+  float: right;
+}
+
+.nav-item {
+  float: left;
+  list-style: none;
+  padding: 0 17px;
+  margin: 0;
+}
+
+.header-logo {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+#logo {
+  display: inline-block;
+  font-size: 1.5em;
+  line-height: 40px;
+  padding-left: 20px;
+  color: #273849;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-weight: 500;
+}
+
+#logo span {
+  vertical-align: middle;
+}
+</style>
+
+<style scoped>
+.el-icon-message-solid {
+  line-height: inherit;
+  font-size: 20px;
+}
+
+.el-header {
+  z-index:9999;
 }
 </style>
