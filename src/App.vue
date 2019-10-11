@@ -145,6 +145,10 @@ export default {
   background-color: #545c64;
 }
 
+.menu-nav a {
+  color:#cecece;
+}
+
 .el-scrollbar__wrap {
   overflow-x: hidden;
 }
