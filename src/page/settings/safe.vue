@@ -102,4 +102,5 @@ export default {
   width: 500px;
   margin: 0 auto;
 }
+
 </style>

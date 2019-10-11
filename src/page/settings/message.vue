@@ -97,6 +97,7 @@ export default {
 
 .side_title {
   margin-bottom: 10px;
+  padding-left: 20px;
 }
 
 .save_button {

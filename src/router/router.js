@@ -5,8 +5,16 @@ const about_feedback = () => import("../page/about/feedback.vue")
 const settings_self = () => import("../page/settings/self.vue")
 const settings_msg = () => import("../page/settings/message.vue")
 const settings_safe = () => import("../page/settings/safe.vue")
+const order_create = () => import("../page/order/create_order.vue")
+const order_list = () => import("../page/order/orderlist.vue")
 
 export default [{
+        path:'/order/create',
+        component:order_create
+    },{
+        path:'/order/list',
+        component:order_list
+    }, {
         path: '/settings/self',
         component: settings_self
     }, {

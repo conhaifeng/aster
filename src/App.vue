@@ -24,7 +24,12 @@
         <el-container>
           <el-aside width="20%">
             <el-scrollbar class="menu-nav">
-              <el-menu default-active="['2']">
+              <el-menu
+                default-active="['2']"
+                background-color="#545c64"
+                text-color="#fff"
+                active-text-color="#ffd04b"
+              >
                 <el-menu-item index="1">
                   <i class="el-icon-menu"></i>
                   <span>处理中心</span>
@@ -34,8 +39,12 @@
                     <i class="el-icon-s-platform"></i>
                     <span>产品中心</span>
                   </template>
-                  <el-menu-item index="2-1">创建订单</el-menu-item>
-                  <el-menu-item index="2-2">我的订单</el-menu-item>
+                  <el-menu-item index="2-1">
+                    <router-link to="/order/create">创建订单</router-link>
+                  </el-menu-item>
+                  <el-menu-item index="2-2">
+                    <router-link to="/order/list">我的订单</router-link>
+                  </el-menu-item>
                 </el-submenu>
                 <el-submenu index="settings" show-timeout.number="5000">
                   <template slot="title">
@@ -104,11 +113,11 @@ export default {
 
 <style>
 .container {
-  height: 90vh;
+  height: 100vh;
 }
 
 .page-container-scroll {
-  height: 90vh;
+  height: 100vh;
 }
 
 .header-container {
@@ -122,6 +131,8 @@ export default {
 .page-container {
   width: 85vw;
   margin: 0 auto;
+  background: #f3f3f4;
+  min-height: calc(100vh - 60px);
 }
 
 .menu-nav {
@@ -129,8 +140,9 @@ export default {
   position: fixed;
   top: 0;
   bottom: 0;
-  margin-top: 80px;
+  margin-top: 60px;
   transition: padding-top 0.3s;
+  background-color: #545c64;
 }
 
 .el-scrollbar__wrap {
@@ -140,7 +152,7 @@ export default {
 .page-component {
   padding-top: 60px;
   padding-left: 18vw;
-  /* padding-left: 240px; */
+  padding-bottom: 50px;
 }
 
 .nav {
@@ -185,6 +197,6 @@ export default {
 }
 
 .el-header {
-  z-index:9999;
+  z-index: 9999;
 }
 </style>
