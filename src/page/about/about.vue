@@ -15,10 +15,10 @@ export default {
         pics: function () {
             var pics = new Array();
            
-            pics.push({'name':require('../../assets/pic1.jpg'), 'txt':'若有所思'})
-            pics.push({'name':require('../../assets/pic2.jpg'), 'txt':'煞有介事'})
-            pics.push({'name':require('../../assets/pic3.jpg'), 'txt':'旁若无人'})
-            pics.push({'name':require('../../assets/pic4.jpg'), 'txt':'大智若愚'})
+            pics.push({'name':require('@/assets/pic1.jpg'), 'txt':'若有所思'})
+            pics.push({'name':require('@/assets/pic2.jpg'), 'txt':'煞有介事'})
+            pics.push({'name':require('@/assets/pic3.jpg'), 'txt':'旁若无人'})
+            pics.push({'name':require('@/assets/pic4.jpg'), 'txt':'大智若愚'})
 
             return pics
         }

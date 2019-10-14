@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import address from "@/components/address.vue";
+import address from "@/components/address";
 export default {
   data: function() {
     return {

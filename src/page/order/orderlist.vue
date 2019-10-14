@@ -38,7 +38,7 @@
         <el-table-column label="总金额" prop="total" width="100"></el-table-column>
         <el-table-column label="订单状态" prop="orderStatus" width="120" align="center" ></el-table-column>
         <el-table-column label="操作" prop="operation" width="150" align="center">
-          <template slot-scope="scope">
+          <template>
             <el-button type="text" >查看</el-button>
             <el-button type="text">编辑</el-button>
           </template>

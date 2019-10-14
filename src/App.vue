@@ -30,10 +30,6 @@
                 text-color="#fff"
                 active-text-color="#ffd04b"
               >
-                <el-menu-item index="1">
-                  <i class="el-icon-menu"></i>
-                  <span>处理中心</span>
-                </el-menu-item>
                 <el-submenu index="2" disabled.bool="false">
                   <template slot="title">
                     <i class="el-icon-s-platform"></i>
@@ -146,7 +142,7 @@ export default {
 }
 
 .menu-nav a {
-  color:#cecece;
+  color: #cecece;
 }
 
 .el-scrollbar__wrap {

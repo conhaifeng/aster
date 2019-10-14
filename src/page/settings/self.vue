@@ -29,7 +29,7 @@
       <el-radio label="female" v-model="userInfo.gender">女</el-radio>
     </el-form-item>
     <el-form-item label="居住地址">
-      <el-cascader :options="addresses" v-model="userInfo.address"></el-cascader>
+      <aster-address :value.sync="userInfo.address"></aster-address>
     </el-form-item>
     <el-form-item label="个人网站">
       <el-input v-model="userInfo.website"></el-input>
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import address from "@/components/address";
 export default {
   data: function() {
     return {
@@ -75,122 +76,6 @@ export default {
         description: "",
         interests: ["computer", "read"]
       },
-      addresses: [
-        {
-          value: "hebei",
-          label: "河北",
-          children: [
-            {
-              value: "shijiazhuang",
-              label: "石家庄"
-            },
-            {
-              value: "baoding",
-              label: "保定"
-            },
-            {
-              value: "tangshan",
-              label: "唐山"
-            },
-            {
-              value: "xingtai",
-              label: "邢台"
-            },
-            {
-              value: "langfang",
-              label: "廊坊"
-            }
-          ]
-        },
-        {
-          value: "jiangsu",
-          label: "江苏",
-          children: [
-            {
-              value: "nanjing",
-              label: "南京"
-            },
-            {
-              value: "suzhou",
-              label: "苏州"
-            },
-            {
-              value: "wuxi",
-              label: "无锡"
-            },
-            {
-              value: "changzhou",
-              label: "常州"
-            },
-            {
-              value: "xuzhou",
-              label: "徐州"
-            }
-          ]
-        },
-        {
-          value: "shandong",
-          label: "山东",
-          children: [
-            {
-              value: "jinan",
-              label: "济南"
-            },
-            {
-              value: "qingdao",
-              label: "青岛"
-            },
-            {
-              value: "yantai",
-              label: "烟台"
-            },
-            {
-              value: "heze",
-              label: "菏泽"
-            }
-          ]
-        },
-        {
-          value: "xinjiang",
-          label: "新疆",
-          children: [
-            {
-              value: "wulumuqi",
-              label: "乌鲁木齐"
-            },
-            {
-              value: "hami",
-              label: "哈密"
-            },
-            {
-              value: "tulufan",
-              label: "吐鲁番"
-            }
-          ]
-        },
-        {
-          value: "henan",
-          label: "河南",
-          children: [
-            {
-              value: "zhengzhou",
-              label: "郑州"
-            },
-            {
-              value: "luoyang",
-              label: "洛阳"
-            },
-            {
-              value: "kaifeng",
-              label: "开封"
-            },
-            {
-              value: "xuchang",
-              label: "许昌"
-            }
-          ]
-        }
-      ],
       interests: [
         { name: "计算机", value: "computer" },
         { name: "篮球", value: "basketball" },
@@ -262,6 +147,9 @@ export default {
         });
       });
     }
+  },
+  components: {
+    "aster-address": address
   }
 };
 </script>
