@@ -339,7 +339,7 @@ export default {
 .total {
   font-size: 14px;
   text-align: right;
-  padding-right: 200px;
+  padding-right: 150px;
   background-color: #fff;
   margin-right: 46px;
   margin-bottom: 30px;
