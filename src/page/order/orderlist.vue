@@ -34,7 +34,7 @@
     </div>
 
     <div class="order-list-mod">
-      <el-table :data="orderInfo" stripe border="true" :fit="false">
+      <el-table :data="orderInfo" stripe :border="true" :fit="false">
         <el-table-column label="订单号" prop="orderid" width="150"></el-table-column>
         <el-table-column label="买家" prop="buyerName" width="150"></el-table-column>
         <el-table-column label="品名" prop="productName" width="150"></el-table-column>
