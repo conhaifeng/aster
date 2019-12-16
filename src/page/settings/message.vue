@@ -6,26 +6,42 @@
           <h3>私信设置</h3>
         </template>
         <div class="side_title">允许谁给我发私信</div>
-        <el-switch v-model="stranger" active-text="允许接受陌生人私信" active-color="#13ce66"></el-switch>
-        <el-switch v-model="follower" active-text="允许接受关注者私信" active-color="#13ce66"></el-switch>
+        <el-switch v-model="stranger"
+                   active-text="允许接受陌生人私信"
+                   active-color="#13ce66"></el-switch>
+        <el-switch v-model="follower"
+                   active-text="允许接受关注者私信"
+                   active-color="#13ce66"></el-switch>
       </el-collapse-item>
       <el-collapse-item name="msg-2">
         <template slot="title">
           <h3>邀请/评论消息设置</h3>
         </template>
         <div class="side_title">有人对我发出邀请时，我会收到消息通知</div>
-        <el-switch v-model="mention_me" active-text="提及我" active-color="#13ce66"></el-switch>
-        <el-switch v-model="reply_me" active-text="评论或回复我" active-color="#13ce66"></el-switch>
-        <el-switch v-model="invite_me" active-text="邀请我回答问题" active-color="#13ce66"></el-switch>
+        <el-switch v-model="mention_me"
+                   active-text="提及我"
+                   active-color="#13ce66"></el-switch>
+        <el-switch v-model="reply_me"
+                   active-text="评论或回复我"
+                   active-color="#13ce66"></el-switch>
+        <el-switch v-model="invite_me"
+                   active-text="邀请我回答问题"
+                   active-color="#13ce66"></el-switch>
       </el-collapse-item>
       <el-collapse-item name="msg-3">
         <template slot="title">
           <h3>赞同/赞赏消息设置</h3>
         </template>
         <div class="side_title">有人对我赞同或赞赏时，我会收到消息通知</div>
-        <el-switch v-model="agree_me" active-text="赞同我的回答" active-color="#13ce66"></el-switch>
-        <el-switch v-model="thanks_me" active-text="感谢我的回答" active-color="#13ce66"></el-switch>
-        <el-switch v-model="appreciate_me" active-text="赞赏了我的回答" active-color="#13ce66"></el-switch>
+        <el-switch v-model="agree_me"
+                   active-text="赞同我的回答"
+                   active-color="#13ce66"></el-switch>
+        <el-switch v-model="thanks_me"
+                   active-text="感谢我的回答"
+                   active-color="#13ce66"></el-switch>
+        <el-switch v-model="appreciate_me"
+                   active-text="赞赏了我的回答"
+                   active-color="#13ce66"></el-switch>
       </el-collapse-item>
       <el-collapse>
         <el-collapse-item name="msg-4">
@@ -33,27 +49,35 @@
             <h3>关注消息设置</h3>
           </template>
           <div class="side_title">我的关注有新动态时，我会收到消息通知</div>
-          <el-switch v-model="follow_me" active-text="关注了我" active-color="#13ce66"></el-switch>
-          <el-switch v-model="follow_my_column" active-text="关注了我的专栏" active-color="#13ce66"></el-switch>
-          <el-switch v-model="new_article_in_column" active-text="专栏有新文章" active-color="#13ce66"></el-switch>
-          <el-switch
-            v-model="new_in_followed_answer"
-            active-text="关注的问题有新回答"
-            active-color="#13ce66"
-          ></el-switch>
-          <el-switch v-model="certificate_expired" active-text="我的礼券即将过期" active-color="#13ce66"></el-switch>
+          <el-switch v-model="follow_me"
+                     active-text="关注了我"
+                     active-color="#13ce66"></el-switch>
+          <el-switch v-model="follow_my_column"
+                     active-text="关注了我的专栏"
+                     active-color="#13ce66"></el-switch>
+          <el-switch v-model="new_article_in_column"
+                     active-text="专栏有新文章"
+                     active-color="#13ce66"></el-switch>
+          <el-switch v-model="new_in_followed_answer"
+                     active-text="关注的问题有新回答"
+                     active-color="#13ce66"></el-switch>
+          <el-switch v-model="certificate_expired"
+                     active-text="我的礼券即将过期"
+                     active-color="#13ce66"></el-switch>
         </el-collapse-item>
       </el-collapse>
     </el-collapse>
-    <div class="save_button">
-      <el-button type="primary" :plain="true" @click="save">保存设置</el-button>
+    <div class="submit-button">
+      <el-button type="primary"
+                 :plain="true"
+                 @click="save">保存设置</el-button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       stranger: false,
       follower: true,
@@ -71,13 +95,8 @@ export default {
     };
   },
   methods: {
-    save: function() {
-      this.$message({
-        message: "保存成功",
-        type: "success",
-        offset: 150,
-        center: true
-      });
+    save: function () {
+      this.$msg('success', '保存成功')
     }
   }
 };
@@ -100,9 +119,7 @@ export default {
   padding-left: 20px;
 }
 
-.save_button {
-  width: 100px;
-  margin: 0 auto;
+.submit-button {
   margin-top: 20px;
 }
 </style>

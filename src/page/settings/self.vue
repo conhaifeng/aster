@@ -52,9 +52,9 @@
     <el-form-item label="自我介绍">
       <el-input type="textarea" v-model="userInfo.description"></el-input>
     </el-form-item>
-    <el-form-item>
+    <div class="submit-button">
       <el-button type="primary" plain @click="submit('userInfo')">保存</el-button>
-    </el-form-item>
+    </div>
   </el-form>
 </template>
 
@@ -138,13 +138,7 @@ export default {
           return false;
         }
 
-        this.$message({
-          message: "提交成功",
-          type: "success",
-          center: true,
-          offset: 150,
-          duration: 2000
-        });
+        this.$msg('success', '提交成功')
       });
     }
   },

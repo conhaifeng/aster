@@ -20,11 +20,9 @@
       <el-form-item class="submit-button">
         <el-button type="primary"
                    class="login-button"
-                   @click="login('loginForm')">登录</el-button>
+                   @click="login">登录</el-button>
       </el-form-item>
     </el-form>
-  </div>
-
   </div>
 
 </template>
@@ -52,38 +50,21 @@ export default {
     };
   },
   methods: {
-    login: function (loginForm) {
-      this.$refs[loginForm].validate(
-        (validate) => {
+    login: function () {
+      this.$refs.loginForm.validate(validate => {
 
-          if (!validate) {
-            return false
-          }
-
-          login(this.accountInfo).then((resp) => {
-            if (resp.data.code !== "0000") {
-              this.$message({
-                type: 'error',
-                message: '用户名或密码错误',
-                duration: 1000,
-                offset: 150
-              })
-
-              return false
-            }
-            this.$router.push("")
-          }).catch((err) => {
-            this.$message({
-              type: 'error',
-              message: '登录失败',
-              duration: 1000,
-              offset: 150
-            })
-            return false
-          });
-
+        if (!validate) {
+          return false
         }
-      )
+
+        this.$store.dispatch('user/login', this.accountInfo)
+          .then(() => {
+            this.$router.push('/index')
+          })
+          .catch(error => {
+            this.$msg('error', error)
+          })
+      })
     }
   }
 };

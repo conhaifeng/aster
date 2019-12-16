@@ -1,22 +1,19 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
 import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import routes from '@/router/router';
-import './style/common.styl' 
-
+import router from '@/router/router';
+import App from './App'
+import store from '@/store'
+import { message } from '@/util/message'
 
 Vue.config.productionTip = false;
+Vue.prototype.$msg = message;
 
-Vue.use(VueRouter);
 Vue.use(Element);
 
-const router = new VueRouter({
-  mode:'history',
-  // base:'component',
-  routes
-});
-
 new Vue({
-  router,
-}).$mount('#app')
+    el: '#app',
+    router,
+    store,
+    render: (h) => h(App)
+})
