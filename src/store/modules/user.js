@@ -10,13 +10,6 @@ export default {
         roles: [],
         isLogined: false
     },
-    getters: {
-        name: state => state.name,
-        phone: state => state.phone,
-        avatar: state => state.avatar,
-        roles: state => state.roles,
-        isLogined: state => state.isLogined
-    },
     mutations: {
         SET_USERINFO: (state, userInfo) => {
             state.name = userInfo.username
@@ -58,15 +51,19 @@ export default {
         },
         getRoles: ({ commit }) => {
             return new Promise((resolve, reject) => {
-                getRoles().then(res => {
-                    let data = res.data
+                getRoles().then(resp => {
+                    const result = resp.data
+                    if (!result) {
+                        reject('Auth failed, pls login in.')
+                    }
 
-                    if (res.code != "0000" || !data) {
+                    const { code, data } = result
+                    if (code != "0000") {
                         reject("Auth failed, pls login in.")
                     }
 
-                    commit("SET_ROLES", data.roles)
-                    resolve(data)
+                    commit("SET_ROLES", data.role)
+                    resolve(data.role)
                 }).catch(error => {
                     reject(error)
                 })

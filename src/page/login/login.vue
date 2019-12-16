@@ -59,7 +59,9 @@ export default {
 
         this.$store.dispatch('user/login', this.accountInfo)
           .then(() => {
-            this.$router.push('/index')
+              this.$router.push('/index').catch(error=>{
+                console.log(error)
+              })
           })
           .catch(error => {
             this.$msg('error', error)

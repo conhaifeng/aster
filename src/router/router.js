@@ -17,12 +17,10 @@ export const const_router_map = [{
     }, {
         path: '/401',
         component: () => import('@/page/erro-page/401'),
-        name: '401page',
         hidden: true
     }, {
         path: '/404',
         component: () => import('@/page/erro-page/404'),
-        name: '404page',
         hidden: true
     }, {
         path: '',
@@ -31,7 +29,6 @@ export const const_router_map = [{
     },
     {
         path: '/index',
-        name: 'index',
         component: () => import('@/layout/index'),
         meta: {
             title: '首页'
@@ -97,19 +94,22 @@ export const async_router_map = [{
 }, {
     path: '/order',
     component: () => import("@/page/login/login"),
+    name: 'order',
     meta: {
         title: '订单管理',
         roles: ['admin', 'order']
     },
     children: [{
-        path: 'myOrder',
+        path: 'list',
         component: () => import('@/page/login/login'),
+        name: 'orderlist',
         meta: {
             title: '我的订单',
             roles: ['admin', 'order']
         }
     }, {
         path: 'create',
+        name: 'createOrder',
         component: () => import('@/page/login/login'),
         meta: {
             title: '创建订单',

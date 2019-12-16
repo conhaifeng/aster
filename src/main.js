@@ -5,6 +5,7 @@ import router from '@/router/router';
 import App from './App'
 import store from '@/store'
 import { message } from '@/util/message'
+import '@/permission'
 
 Vue.config.productionTip = false;
 Vue.prototype.$msg = message;

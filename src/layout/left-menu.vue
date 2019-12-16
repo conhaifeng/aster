@@ -12,14 +12,14 @@
                         :index="item.name">
               <template slot="title">{{item.meta.title}}</template>
               <template v-for="childItem in item.children">
-                <el-menu-item :index="childItem.name"
+                <el-menu-item :index="getPath(item.path, childItem.path)"
                               :key="childItem.name">
-                  <router-link :to="item.path + '/' +childItem.path">{{childItem.meta.title}}</router-link>
+                  <router-link :to="getPath(item.path, childItem.path)">{{childItem.meta.title}}</router-link>
                 </el-menu-item>
               </template>
             </el-submenu>
 
-            <el-menu-item :index="item.name"
+            <el-menu-item :index="item.path"
                           :key="item.name"
                           v-else>
               <router-link :to="item.path">{{item.meta.title}}</router-link>
@@ -49,10 +49,13 @@ export default {
   methods: {
     hasChild: function (router) {
       return router.children && router.children.length > 0
+    },
+    getPath: function (parentPath, childPath) {
+      return parentPath + '/' + childPath
     }
   },
   computed: {
-    ...mapGetters ({
+    ...mapGetters({
       routers: 'permission/routers'
     })
   }

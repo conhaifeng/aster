@@ -46,10 +46,10 @@ export default {
   },
   computed: {
     ...mapGetters(
-      {
-        name: 'user/name',
-        phone: 'user/phone'
-      }
+      [
+        'name',
+        'phone'
+      ]
     )
   }
 }

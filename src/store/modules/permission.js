@@ -8,7 +8,6 @@ export default {
     },
     getters: {
         routers: state => state.routers, // 全部可加载的路由
-        permissedRouters: state => state.permissedRouters
     },
     mutations: {
         SET_ROUTES: (state, permissedRouters) => {
@@ -17,10 +16,42 @@ export default {
         }
     },
     actions: {
-        generateRouters({ commit }, role) {
+        generateRouters({ commit }, roles) {
             return new Promise((resolve, reject) => {
-                if (role)
+                let routers = []
+                if (roles.includes('admin')) {
+                    routers = async_router_map
+                } else {
+                    routers = filterByRoles(roles, async_router_map)
+                }
+
+                commit('SET_ROUTES', routers)
+                resolve()
             })
         }
     }
+}
+
+function filterByRoles(roles, routers) {
+    if (roles.length === 0) {
+        return []
+    }
+
+    return routers.filter(router => {
+        if (hasPermission(roles, router)) {
+            if (router.children && router.children.length) {
+                router.children = filterByRoles(roles, router.children)
+            }
+            return true
+        }
+
+        return false
+    })
+}
+
+function hasPermission(roles, router) {
+    if (router.meta && router.meta.roles) {
+        return roles.includes(router.meta.roles)
+    }
+    return true
 }

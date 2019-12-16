@@ -5,15 +5,25 @@ import 'nprogress/nprogress.css'
 
 const whiteList = ['/login'] // 无需跳转的白名单
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     NProgress.start()
+    if (store.getters.isLogined) {
 
-    if (store.user.isLogined) {
-        if (store.user.roles.length === 0) {
-            const userRoles = await store.dispatch('user/getRoles')
+        if (store.getters.roles.length === 0) {
+            try {
+                const roles = await store.dispatch('user/getRoles')
+                await store.dispatch('permission/generateRouters', roles)
+                router.addRoutes(store.getters.permissedRouters)
+                next({ ...to, replace: true })
+            } catch (error) {
+                console.log(error)
+                next('/login')
+                NProgress.done()
+            }
 
         } else {
             // if (hasPermission(store.user.roes))
+            next()
         }
     } else {
         if (whiteList.indexOf(to.path) !== -1) {
@@ -23,4 +33,8 @@ router.beforeEach((to, from, next) => {
             NProgress.done()
         }
     }
+})
+
+router.afterEach((to, from) => {
+    NProgress.done()
 })
