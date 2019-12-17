@@ -1,5 +1,7 @@
-import { getRoles, login, logout } from '@/api/user'
+import { getUserInfo, login, logout } from '@/api/user'
 import { Promise, reject } from 'q';
+import { getStorage, setStorage, removeStorage } from '@/util/mixin'
+import { CONST } from '@/util/constants'
 
 export default {
     namespaced: true,
@@ -8,13 +10,12 @@ export default {
         phone: '',
         avatar: '',
         roles: [],
-        isLogined: false
     },
     mutations: {
         SET_USERINFO: (state, userInfo) => {
             state.name = userInfo.username
             state.phone = userInfo.phone
-            state.isLogined = true
+            state.roles = userInfo.roles
             // state.avatar = userInfo.avatar
         },
         SET_NAME: (state, name) => {
@@ -28,10 +29,8 @@ export default {
         },
         SET_ROLES: (state, roles) => {
             state.roles = roles
-        },
-        SET_LOGIN: (state, logined) => {
-            state.isLogined = logined
         }
+
     },
     actions: {
         login: ({ commit }, accountInfo) => {
@@ -40,7 +39,9 @@ export default {
                     const { data } = resp //参数解构
                     if (data.code === "0000") {
                         let userInfo = data.data
-                        commit("SET_USERINFO", userInfo)
+                        commit("SET_NAME", userInfo.username)
+                        commit('SET_PHONE', userInfo.phone)
+                        setStorage(CONST.IS_LOGINED, true)
                         resolve()
                     }
                     reject(data.message)
@@ -49,9 +50,9 @@ export default {
                 })
             })
         },
-        getRoles: ({ commit }) => {
+        getUserInfo: ({ commit }) => {
             return new Promise((resolve, reject) => {
-                getRoles().then(resp => {
+                getUserInfo().then(resp => {
                     const result = resp.data
                     if (!result) {
                         reject('Auth failed, pls login in.')
@@ -62,8 +63,8 @@ export default {
                         reject("Auth failed, pls login in.")
                     }
 
-                    commit("SET_ROLES", data.role)
-                    resolve(data.role)
+                    commit("SET_USERINFO", data)
+                    resolve(data)
                 }).catch(error => {
                     reject(error)
                 })
@@ -75,7 +76,7 @@ export default {
                     commit('SET_NAME', '')
                     commit('SET_PHONE', '')
                     commit('SET_ROLES', [])
-                    commit('SET_LOGIN', false)
+                    removeStorage(CONST.IS_LOGINED)
                     resolve()
                 })
             })

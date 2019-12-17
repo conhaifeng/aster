@@ -8,8 +8,8 @@ export function logout() {
     return axios.get('/logout')
 }
 
-export function getRoles() {
-    return axios.get("/users/permission")
+export function getUserInfo() {
+    return axios.get("/users/userInfo")
 }
 
 export function changePassword(data) {
