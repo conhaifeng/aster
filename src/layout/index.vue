@@ -1,8 +1,8 @@
 <template>
   <div class="aster-container">
-    <asterHead></asterHead>
-    <asterAside></asterAside>
-    <asterMain></asterMain>
+    <aster-head></aster-head>
+    <aster-aside></aster-aside>
+    <aster-main></aster-main>
   </div>
 </template>
 

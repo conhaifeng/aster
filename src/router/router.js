@@ -1,3 +1,4 @@
+import layout from '@/layout'
 import Vue from 'vue';
 import Router from 'vue-router';
 
@@ -24,19 +25,28 @@ export const const_router_map = [{
         hidden: true
     }, {
         path: '',
-        redirect: '/index',
+        redirect: '/index/index',
         hidden: true
     },
     {
         path: '/index',
-        component: () => import('@/layout/index'),
+        component: layout,
+        name: 'index',
         meta: {
             title: '首页'
-        }
+        },
+        children: [{
+            path: 'index',
+            component: () => import('@/page/index'),
+            name: 'index.index',
+            meta: {
+                title: '首页的首页'
+            }
+        }]
     }, {
         path: '/account',
         name: 'account',
-        component: () => import('@/layout/index'),
+        component: layout,
         meta: {
             title: '账户信息'
         },
@@ -68,7 +78,7 @@ export const const_router_map = [{
 
 export const async_router_map = [{
     path: '/user',
-    component: () => import('@/page/login/login'),
+    component: layout,
     name: 'userManage',
     meta: {
         title: '用户管理',
@@ -93,7 +103,7 @@ export const async_router_map = [{
     }]
 }, {
     path: '/order',
-    component: () => import("@/page/login/login"),
+    component: layout,
     name: 'order',
     meta: {
         title: '订单管理',
@@ -113,6 +123,22 @@ export const async_router_map = [{
         component: () => import('@/page/login/login'),
         meta: {
             title: '创建订单',
+            roles: ['admin', 'order']
+        }
+    }]
+}, {
+    path: '/dota2',
+    component: layout,
+    name: 'dota2',
+    meta: {
+        title: '游戏'
+    },
+    children: [{
+        path: 'group',
+        component: () => import('@/page/game/game'),
+        name: 'dota2',
+        meta: {
+            title: '小组赛',
             roles: ['admin', 'order']
         }
     }]

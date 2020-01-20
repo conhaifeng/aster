@@ -7,7 +7,8 @@
                :default-active="$route.name">
         <template v-for="item in routers">
           <template v-if="!item.hidden">
-            <el-submenu v-if="hasChild(item)"
+
+            <el-submenu v-if="hasMoreThanOneChild(item)"
                         :key="item.name"
                         :index="item.name">
               <template slot="title">{{item.meta.title}}</template>
@@ -18,6 +19,12 @@
                 </el-menu-item>
               </template>
             </el-submenu>
+
+            <el-menu-item :index="item.path"
+                          :key="item.name"
+                          v-else-if="hasOneChild(item)">
+              <router-link :to="getPath(item.path, item.children[0].path)">{{item.meta.title}}</router-link>
+            </el-menu-item>
 
             <el-menu-item :index="item.path"
                           :key="item.name"
@@ -47,8 +54,11 @@ export default {
     }
   },
   methods: {
-    hasChild: function (router) {
-      return router.children && router.children.length > 0
+    hasMoreThanOneChild: function (router) {
+      return router.children && router.children.length > 1
+    },
+    hasOneChild: function (router) {
+      return router.children && router.children.length == 1
     },
     getPath: function (parentPath, childPath) {
       return parentPath + '/' + childPath
