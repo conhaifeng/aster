@@ -111,7 +111,7 @@ export const async_router_map = [{
     },
     children: [{
         path: 'list',
-        component: () => import('@/page/login/login'),
+        component: () => import('@/page/order/orderlist'),
         name: 'orderlist',
         meta: {
             title: '我的订单',
@@ -120,7 +120,7 @@ export const async_router_map = [{
     }, {
         path: 'create',
         name: 'createOrder',
-        component: () => import('@/page/login/login'),
+        component: () => import('@/page/order/createOrder'),
         meta: {
             title: '创建订单',
             roles: ['admin', 'order']
