@@ -125,6 +125,14 @@ export const async_router_map = [{
             title: '创建订单',
             roles: ['admin', 'order']
         }
+    }, {
+        path: 'loan',
+        name: 'loanInfo',
+        component: () => import('@/page/order/loanReceipt'),
+        meta: {
+            title: '我的借款',
+            roles: ['admin', 'order']
+        }
     }]
 }, {
     path: '/dota2',
