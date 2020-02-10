@@ -3,14 +3,14 @@
     <el-form :model="loanForm"
              ref="loanForm">
       <el-table :data="loanForm.loanInfos">
-        <el-table-column label="memberId"
+        <el-table-column label="uid"
                          width="180">
           <template slot-scope="scope">
-            <el-form-item :prop="'loanInfos.' + scope.$index + '.memberId'"
-                          :rules="rules.memberId">
-              <el-input v-model.trim="scope.row.memberId"
+            <el-form-item :prop="'loanInfos.' + scope.$index + '.uid'"
+                          :rules="rules.uid">
+              <el-input v-model.trim="scope.row.uid"
                         clearable
-                        placeholder="请输入memberId"></el-input>
+                        placeholder="请输入uid"></el-input>
             </el-form-item>
           </template>
         </el-table-column>
@@ -94,7 +94,7 @@ export default {
     return {
       loanForm: {
         loanInfos: [{
-          memberId: '',
+          uid: '',
           orderId: '',
           type: '01',
           loanDate: '',
@@ -113,7 +113,7 @@ export default {
         value: '03'
       }],
       rules: {
-        memberId: [
+        uid: [
           { required: true, message: '不能为空', trigger: 'blur' }
         ],
         orderId: [
@@ -166,7 +166,7 @@ export default {
       }
 
       const newLoanInfo = {
-        memberId: '',
+        uid: '',
         orderId: '',
         type: '01',
         loanDate: '',
