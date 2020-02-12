@@ -43,6 +43,7 @@ module.exports = {
     lintOnSave: false, // 关闭eslint
     // 打包时不生成.map文件
     productionSourceMap: false,
+    // 本地开发的服务器，生产环境不会启动
     devServer: {
         open: true,
         host: '0.0.0.0',
