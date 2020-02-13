@@ -35,6 +35,7 @@ export const const_router_map = [{
         meta: {
             title: '首页'
         },
+        redirect: '/index/index',
         children: [{
             path: 'index',
             component: () => import('@/page/index'),
