@@ -9,13 +9,15 @@
       <el-form-item prop="username">
         <el-input v-model="accountInfo.username"
                   placeholder="请输入用户名"
-                  prefix-icon="el-icon-user-solid" />
+                  prefix-icon="el-icon-user-solid"
+                  @keyup.native.enter="login" />
       </el-form-item>
       <el-form-item prop="password">
         <el-input v-model="accountInfo.password"
                   placeholder="请输入密码"
                   show-password
-                  prefix-icon="el-icon-unlock" />
+                  prefix-icon="el-icon-unlock"
+                  @keyup.native.enter="login" />
       </el-form-item>
       <el-form-item class="submit-button">
         <el-button type="primary"
@@ -59,8 +61,8 @@ export default {
 
         this.$store.dispatch('user/login', this.accountInfo)
           .then(() => {
-              this.$router.push('/index').catch(error=>{
-              })
+            this.$router.push('/index').catch(error => {
+            })
           })
           .catch(error => {
             this.$msg('error', error)
