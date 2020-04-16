@@ -1,6 +1,6 @@
 const TerserPlugin = require('terser-webpack-plugin') // 用于在生成环境剔除debuger和console
 const CompressionPlugin = require("compression-webpack-plugin"); // gzip压缩,优化http请求,提高加载速度
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin // 代码分析工具 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin // 代码分析工具 
 const path = require('path');
 const resolve = dir => {
     return path.join(__dirname, dir);
@@ -87,11 +87,11 @@ module.exports = {
             })
             .end()
         // 项目文件大小分析
-        // config.plugin('webpack-bundle-analyzer')
-        //     .use(new BundleAnalyzerPlugin({
-        //         openAnalyzer: false, // 是否打开默认浏览器
-        //         analyzerPort: 8777
-        //     }))
+        config.plugin('webpack-bundle-analyzer')
+            .use(new BundleAnalyzerPlugin({
+                openAnalyzer: false, // 是否打开默认浏览器
+                analyzerPort: 8777
+            }))
 
         // 对vue-cli内部的 webpack 配置进行更细粒度的修改。
         // 添加CDN参数到htmlWebpackPlugin配置中， 详见public/index.html 修改
